@@ -5,6 +5,8 @@ import { Route } from "react-router-dom"
 import { EventList } from "./events/EventList"
 import { EventProvider } from "./events/EventProvider"
 import { EventForm } from "./events/EventForm"
+import { EventDetail } from "./events/EventDetail"
+
 
 
 export const ApplicationViews = () => {
@@ -32,6 +34,12 @@ export const ApplicationViews = () => {
         <Route path="/events/create">
           <EventForm />
         </Route>
+
+        {/* REINSTATE AFTER MERGE WITH USER PROVIDER COMPONENT */
+        
+        /*<Route path="/events/detail/:eventId(\d+)">
+          <EventDetail />
+  </Route>*/}
       </EventProvider>
     </>
   )

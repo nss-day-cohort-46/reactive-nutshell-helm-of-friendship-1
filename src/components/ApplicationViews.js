@@ -4,6 +4,7 @@ import { Route } from "react-router-dom"
 // ! Render list first, then detail, then form
 import { EventList } from "./events/EventList"
 import { EventProvider } from "./events/EventProvider"
+import { EventForm } from "./events/EventForm"
 
 
 export const ApplicationViews = () => {
@@ -24,8 +25,12 @@ export const ApplicationViews = () => {
       </Route>
       
       <EventProvider>
-        <Route path="/events">
+        <Route exact path="/events">
           <EventList />
+        </Route>
+
+        <Route path="/events/create">
+          <EventForm />
         </Route>
       </EventProvider>
     </>

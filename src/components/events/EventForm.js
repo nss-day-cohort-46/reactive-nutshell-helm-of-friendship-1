@@ -93,7 +93,7 @@ export const EventForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="info">Event Description: </label> 
-                    <input type="info" id="info" onChange={handleControlledInputChange} required className="form-control" placeholder="info?" value={event.info} />
+                    <textarea type="info" id="info" onChange={handleControlledInputChange} required className="form-control" placeholder="info?" value={event.info}></textarea>
                 </div>
             </fieldset>
             <button className="btn btn-primary"

@@ -30,7 +30,7 @@ export const EventForm = () => {
                             setIsLoading(false)
                         })
                 } else {
-                    setIsLoading{false}
+                    setIsLoading(false)
                 }
             })
     }, [])
@@ -54,6 +54,8 @@ export const EventForm = () => {
 
         
         setIsLoading(true)
+
+        // get userId from session storage
         const currentUserId = sessionStorage.getItem("id")
         if(eventId) {
             updateEvent({

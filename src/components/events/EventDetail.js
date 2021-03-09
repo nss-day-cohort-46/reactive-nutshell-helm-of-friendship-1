@@ -11,12 +11,14 @@ export const EventDetail = () => {
     const [event, setEvent] = useState({})
     
     const { getUserById } = useContext(UserContext)
-    const [user, setUser] = useSTate({})
+    const [user, setUser] = useState({})
     
     
     
     const history = useHistory()
     const { eventId } = useParams()
+    //get user Id from session storage
+    const currentUserId = sessionStorage.getItem("id")
 
     useEffect(() => {
         getEventById(eventId)
@@ -24,7 +26,7 @@ export const EventDetail = () => {
                 setEvent(response)
             })
 
-        getUserById(userId)
+        getUserById(currentUserId)
             .then(response => {
                 setUser(response)
             })

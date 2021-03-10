@@ -3,14 +3,12 @@ import { Route } from "react-router-dom"
 import { FriendList } from "./friends/FriendList"
 import { FriendProvider } from "./friends/FriendProvider"
 import { UserProvider } from "./users/UserProvider"
+import { ArticleList } from "./articles/ArticleList"
+import { ArticleProvider } from "./articles/ArticleProvider"
 
 export const ApplicationViews = () => {
   return (
     <>
-
-      <Route exact path="/">
-        {/* Render the component for news articles */}
-      </Route>
       <FriendProvider>
         <UserProvider>
           <Route path="/friends">
@@ -19,6 +17,14 @@ export const ApplicationViews = () => {
           </Route>
         </UserProvider>
       </FriendProvider>
+      <ArticleProvider>
+          <Route exact path="/">
+            <ArticleList/>
+          </Route>
+        </ArticleProvider>  
+      <Route path="/friends">
+        {/* Render the component for list of friends */}
+      </Route>
       <Route path="/messages">
         {/* Render the component for the messages */}
       </Route>

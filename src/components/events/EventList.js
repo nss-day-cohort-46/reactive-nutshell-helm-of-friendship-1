@@ -9,6 +9,7 @@ export const EventList = () => {
 
     const { events, getEvents } = useContext(EventContext)
     const [userEvents, setUserEvents] = useState([])
+    console.log('userEvents: ', userEvents);
 
     const currentUserId = +sessionStorage.getItem("nutshell_user")
 

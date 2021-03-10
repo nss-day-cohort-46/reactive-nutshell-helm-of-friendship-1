@@ -11,6 +11,8 @@ export const EventList = () => {
         getEvents()
     }, [])
 
+    console.log("events falg", events)
+
     const history = useHistory()
 
     return (

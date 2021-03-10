@@ -7,7 +7,7 @@ export const EventCard = ({event}) => (
     <section className="eventCard">
         <h3 className="eventTitle">
             <Link to ={`events/detail/${event.id}`}>
-                {event.name}
+                {`${event.title} ${event.date}`}
             </Link>
         </h3>
     </section>

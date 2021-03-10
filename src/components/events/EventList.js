@@ -7,21 +7,29 @@ import { useHistory } from "react-router-dom"
 //! Display by user
 export const EventList = () => {
 
-    const { events, getEvents } = useContext(EventContext)
+    const { events, getEventsByUserId } = useContext(EventContext)
     const [userEvents, setUserEvents] = useState([])
-    console.log('userEvents: ', userEvents);
 
     const currentUserId = +sessionStorage.getItem("nutshell_user")
 
-
+    // Filter events for current user via fetch call
     useEffect(() => {
-        getEvents()
+        getEventsByUserId(currentUserId)
     }, [])
 
+    // useEffect(() => {
+    //     const filteredByUser = events.filter(e => e.userId === currentUserId)
+    //     setUserEvents(filteredByUser)
+    // }, [])
+
+    // Sort events by date when events state Changes
     useEffect(() => {
-        const filteredByUser = events.filter(e => e.userId === currentUserId)
-        setUserEvents(filteredByUser)
-    }, [])
+        const sortByDate = events.sort((a, b) => new Date(a.date) - new Date(b.date))
+        setUserEvents(sortByDate)
+    }, [events])
+
+    
+
 
 
     const history = useHistory()

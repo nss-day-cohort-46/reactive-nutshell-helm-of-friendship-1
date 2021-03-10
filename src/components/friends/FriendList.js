@@ -15,7 +15,8 @@ export const FriendList = () => {
         <div className="friendList">
             {
                 friends.map(friend => {
-                    const currentUser = users.find(user => user.id === friend.currentUserId)
+                    const sessionUserId = sessionStorage.getItem("nutshell_user")
+                    const currentUser = users.find(user => user.id === friend.currentUserId && user.id === sessionUserId)
                     const userObject = users.find(user => user.id === friend.userId)
                 return <FriendCard key={friend.id}
                             userObject={userObject}

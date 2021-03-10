@@ -20,6 +20,7 @@ export const Register = () => {
         // If your json-server URL is different, please change it below!
         return fetch(`http://localhost:8088/users?email=${registerUser.email}`)
             .then(res => res.json())
+            // "!!" returns false if user.length = 0 (meaning there is no existing user) or "!!" returns true if user.length = 1 (meaning there is an existing user in the array returned from the fetch call)
             .then(user => !!user.length)
     }
 
@@ -28,6 +29,7 @@ export const Register = () => {
 
         existingUserCheck()
             .then((userExists) => {
+                // If "userExists" is false (therefore no existing user was in the database) then we add the current user to the database by grabbing their email in the input field
                 if (!userExists) {
                     // If your json-server URL is different, please change it below!
                     fetch("http://localhost:8088/users", {

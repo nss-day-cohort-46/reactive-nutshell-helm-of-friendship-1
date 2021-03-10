@@ -7,6 +7,15 @@ import { FriendProvider } from "./friends/FriendProvider"
 import { UserProvider } from "./users/UserProvider"
 import { ArticleList } from "./articles/ArticleList"
 import { ArticleProvider } from "./articles/ArticleProvider"
+import { ArticleDetail } from "./articles/ArticleDetail"
+
+// ! Render list first, then detail, then form
+import { EventList } from "./events/EventList"
+import { EventProvider } from "./events/EventProvider"
+import { EventForm } from "./events/EventForm"
+import { EventDetail } from "./events/EventDetail"
+
+
 
 export const ApplicationViews = () => {
   return (
@@ -14,16 +23,18 @@ export const ApplicationViews = () => {
       <FriendProvider>
         <UserProvider>
           <Route path="/friends">
-            {/* Render the component for list of friends */}
             <FriendList />
           </Route>
         </UserProvider>
       </FriendProvider>
       <ArticleProvider>
-        <Route exact path="/">
-          <ArticleList />
-        </Route>
-      </ArticleProvider>
+          <Route exact path="/">
+            <ArticleList/>
+          </Route>
+          <Route exact path= "/detail/:articleId(\d+)">
+            <ArticleDetail/>
+          </Route>
+        </ArticleProvider>  
       <Route path="/friends">
         {/* Render the component for list of friends */}
       </Route>
@@ -39,9 +50,22 @@ export const ApplicationViews = () => {
       <Route path="/tasks">
         {/* Render the component for the user's tasks */}
       </Route>
-      <Route path="/events">
-        {/* Render the component for the user's events */}
-      </Route>
+      
+      <UserProvider>
+        <EventProvider>
+            <Route exact path="/events">
+              <EventList />
+            </Route>
+
+            <Route path="/events/create">
+              <EventForm />
+            </Route>
+            
+            <Route path="/events/detail/:eventId(\d+)">
+              <EventDetail />
+            </Route>
+        </EventProvider>
+      </UserProvider>
     </>
   )
 }

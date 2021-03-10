@@ -23,7 +23,7 @@ export const ArticleProvider = (props) => {
 }
 
 const getArticleById = (id) => {
-  return fetch(`http://localhost:8088/articles/${id}`)
+  return fetch(`http://localhost:8088/${id}`)
       .then(res => res.json())
 }
 
@@ -33,7 +33,7 @@ const updateArticle = article => {
   headers: {
       "Content-Type": "application/json"
   },
-  body: JSON.stringify(location)
+  body: JSON.stringify(article)
   })
   .then(getArticles)
 }

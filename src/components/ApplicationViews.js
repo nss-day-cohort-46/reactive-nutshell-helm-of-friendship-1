@@ -21,7 +21,7 @@ export const ApplicationViews = () => {
           <Route exact path="/">
             <ArticleList/>
           </Route>
-          <Route exact path= "/details">
+          <Route exact path= "/detail/:articleId(\d+)">
             <ArticleDetail/>
           </Route>
         </ArticleProvider>  

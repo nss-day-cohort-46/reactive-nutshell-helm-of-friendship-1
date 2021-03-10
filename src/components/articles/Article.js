@@ -7,7 +7,7 @@ export const Article = ({articleObj}) => {
   return (
     <div className="articleCard" id={articleObj.id}>
         <h4 className="articleCard__title"><Link to={`/detail/${articleObj.id}`}>
-                {article.title }
+                {articleObj.title }
             </Link></h4>
         <div className="articleCard__synopsis">{articleObj.sysopsis}</div>
         <div className="articleCard__url">{articleObj.url}</div>

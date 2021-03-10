@@ -14,16 +14,17 @@ export const ArticleDetail = () => {
 	const history = useHistory();
 
   useEffect(() => {
-    getLocationById(locationId)
+    console.log("useEffect", articleId)
+    getArticleById(articleId)
     .then((response) => {
       setArticle(response)
     })
     }, [])
   return (
     <section className="location">
-      <h3 className="location__name">{location.name}</h3>
-      <div className="location__address">Address: {location.address}</div>
-      <button onClick={() => {history.push(`/locations/edit/${location.id}`)}}>Edit</button>
+      <h3 className="location__name">{article.title}</h3>
+      <div className="location__address">Summary: {article.synopsis}</div>
+      <button onClick={() => {history.push(`/edit/${article.id}`)}}>Edit</button>
     </section>
   )
 }

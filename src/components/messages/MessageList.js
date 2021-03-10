@@ -9,7 +9,7 @@ import "./Message.css"
 export const MessageList = () => {
     const { messages, getMessages, addMessage } = useContext(MessageContext)
     const { users, getUsers } = useContext(UserContext)
-
+    
     const currentUserId = parseInt(sessionStorage.getItem("nutshell__user"))
     const [message, setMessage] = useState({
         userId: 0,
@@ -38,6 +38,7 @@ export const MessageList = () => {
 
     // fetch message data and change message state
     useEffect(() => {
+        console.log("event")
         getUsers()
             .then(getMessages)
     }, [])
@@ -49,9 +50,9 @@ export const MessageList = () => {
                 <h3>Message Board</h3>
                 {
                     messages.map(message => {
+                        
                         const user = users.find(user => user.id === message.userId)
                         console.log(user, message)
-                    
                         return <MessageCard key={message.id} message={message} user={user} />
                     })
                 }
@@ -60,9 +61,9 @@ export const MessageList = () => {
                 <textarea type="text" name="textarea" id="content" onChange={handleControlledInputChange} required autoFocus placeholder="Write your message here" value={message.content} >
                 </textarea>
                 </fieldset>
-                {/* <button onClick={event => {handleSaveMessage()}}>
+                <button onClick={handleSaveMessage}>
                     Send It
-                </button> */}
+                </button>
             </div>
         </aside>
     )

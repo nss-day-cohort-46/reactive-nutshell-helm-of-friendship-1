@@ -10,6 +10,7 @@ export const MessageList = () => {
     const { messages, getMessages, addMessage } = useContext(MessageContext)
     const { users, getUsers } = useContext(UserContext)
 
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell__user"))
     const [message, setMessage] = useState({
         userId: 0,
         content: "",
@@ -21,7 +22,6 @@ export const MessageList = () => {
     const history = useHistory()
 
     const handleControlledInputChange = (event) => {
-        console.log("change")
         const newMessage = { ...message }
         newMessage[event.target.id] = event.target.value
         setMessage(newMessage)
@@ -29,7 +29,7 @@ export const MessageList = () => {
 
     const handleSaveMessage = () => {
         addMessage({
-            userId: message.userId,
+            userId: currentUserId,
             content: message.content,
             timestamp: message.timestamp
         })
@@ -50,6 +50,8 @@ export const MessageList = () => {
                 {
                     messages.map(message => {
                         const user = users.find(user => user.id === message.userId)
+                        console.log(user, message)
+                    
                         return <MessageCard key={message.id} message={message} user={user} />
                     })
                 }
@@ -58,9 +60,9 @@ export const MessageList = () => {
                 <textarea type="text" name="textarea" id="content" onChange={handleControlledInputChange} required autoFocus placeholder="Write your message here" value={message.content} >
                 </textarea>
                 </fieldset>
-                <button onClick={event => {handleSaveMessage()}}>
+                {/* <button onClick={event => {handleSaveMessage()}}>
                     Send It
-                </button>
+                </button> */}
             </div>
         </aside>
     )

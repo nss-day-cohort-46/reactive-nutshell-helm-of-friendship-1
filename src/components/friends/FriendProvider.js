@@ -22,9 +22,14 @@ export const FriendProvider = (props) => {
         .then(getFriends)
     }
 
+    const getFriendById = (id) => {
+        return fetch(`http://localhost:8088/friends/${id}`)
+            .then(res => res.json())
+    }
+
     return (
         <FriendContext.Provider value={{
-            friends, getFriends, addFriend
+            friends, getFriends, addFriend, getFriendById
         }}>
             {props.children}
         </FriendContext.Provider>

@@ -40,21 +40,23 @@ export const ApplicationViews = () => {
         {/* Render the component for the user's tasks */}
       </Route>
       
-      <EventProvider>
-        <Route exact path="/events">
-          <EventList />
-        </Route>
+      <UserProvider>
+        <EventProvider>
+            <Route exact path="/events">
+              <EventList />
+            </Route>
 
-        <Route path="/events/create">
-          <EventForm />
-        </Route>
+            <Route path="/events/create">
+              <EventForm />
+            </Route>
 
-        {/* REINSTATE AFTER MERGE WITH USER PROVIDER COMPONENT */
-        
-        /*<Route path="/events/detail/:eventId(\d+)">
-          <EventDetail />
-  </Route>*/}
-      </EventProvider>
+            {/* REINSTATE AFTER MERGE WITH USER PROVIDER COMPONENT */
+            
+            /*<Route path="/events/detail/:eventId(\d+)">
+              <EventDetail />
+            </Route>*/}
+        </EventProvider>
+      </UserProvider>
     </>
   )
 }

@@ -36,47 +36,47 @@ export const EventForm = () => {
     }, [])
 
     
-    const handleControlledInputChange = event => {
+    const handleControlledInputChange = e => {
 
         const newEvent = {...event}
         // "+" is the unary operator for "parseInt()" [line 45]
-        let selectedVal = event.target.value
-        if (event.target.id.includes("Id")) {
-            selectedVal = +selectedVal
+        let selectedVal = e.target.value
+        if (e.target.id.includes("Id")) {
+            selectedVal = parseInt(selectedVal)
         }
-
-        newEvent[event.target.id] = selectedVal
+        
+        newEvent[e.target.id] = selectedVal
 
         setEvent(newEvent)
     }
-    
-    const handleSaveEvent = () => {
-
         
-        setIsLoading(true)
-
-        // get userId from session storage
-        const currentUserId = sessionStorage.getItem("id")
-        if(eventId) {
-            updateEvent({
-                date: event.date,
-                userId: currentUserId,
-                title: event.title,
-                info: event.info,
-                id: event.id
-            }).then(() => history.push(`/events/detail/${event.id}`))
-        } else {
-            addEvent({
-                date: event.date,
-                userId: currentUserId,
-                title: event.title,
-                info: event.info,
-            }).then(() => history.push("/events"))
+        const handleSaveEvent = e => {
+            
+            
+            setIsLoading(true)
+            
+            // get userId from session storage
+            const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+            if(eventId) {
+                updateEvent({
+                    date: event.date,
+                    userId: currentUserId,
+                    title: event.title,
+                    info: event.info,
+                    id: event.id
+                }).then(() => history.push(`/events/detail/${event.id}`))
+            } else {
+                addEvent({
+                    date: event.date,
+                    userId: currentUserId,
+                    title: event.title,
+                    info: event.info,
+                }).then(() => history.push("/events"))
+            }
         }
-    }
-
-    return (
-        <form className="eventForm">
+        
+        return (
+            <form className="eventForm">
             <h2 className="eventFormTitle">{eventId ? "Edit Event" : "Add Event"}</h2>
             <fieldset>
                 <div className="form-group">
@@ -106,6 +106,6 @@ export const EventForm = () => {
                 </button>
         </form>
     )
-
     
-}   
+    
+}

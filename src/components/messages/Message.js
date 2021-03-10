@@ -4,10 +4,8 @@ import { React } from "react";
 export const MessageCard = ({message, user}) => {
     return (
         <section className="messageCard">
-            <div>
-                {message.content}
-            </div>
-            <p>{user.name}</p>
+            <div>"{message.content}"</div>
+            <p>- {user.name}</p>
         </section>
     )
 }

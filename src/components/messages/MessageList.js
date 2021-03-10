@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { MessageCard } from "./Message.js";
 import { MessageContext } from "./MessageProvider.js";
@@ -7,17 +7,39 @@ import "./Message.css"
 
 // creates message board
 export const MessageList = () => {
-    const { messages, getMessages } = useContext(MessageContext)
+    const { messages, getMessages, addMessage } = useContext(MessageContext)
     const { users, getUsers } = useContext(UserContext)
 
+    const [message, setMessage] = useState({
+        userId: 0,
+        content: "",
+        timestamp: 0,
+        id: 0
+    });
+
+    // const [isLoading, setIsLoading] = useState(true);
     const history = useHistory()
+
+    const handleControlledInputChange = (event) => {
+        console.log("change")
+        const newMessage = { ...message }
+        newMessage[event.target.id] = event.target.value
+        setMessage(newMessage)
+    }
+
+    const handleSaveMessage = () => {
+        addMessage({
+            userId: message.userId,
+            content: message.content,
+            timestamp: message.timestamp
+        })
+            .then(() => history.push("./messages"))
+    }
 
     // fetch message data and change message state
     useEffect(() => {
-        debugger
-        console.log("useEffect", users, messages)
         getUsers()
-        .then(getMessages)
+            .then(getMessages)
     }, [])
 
     // render message board to DOM
@@ -28,14 +50,17 @@ export const MessageList = () => {
                 {
                     messages.map(message => {
                         const user = users.find(user => user.id === message.userId)
-                        return <MessageCard key={message.id} message={message} user={user}/>
+                        return <MessageCard key={message.id} message={message} user={user} />
                     })
                 }
-                <textarea placeholder="Write your message here">
+                <fieldset>
+                <label htmlFor="content"></label>
+                <textarea type="text" name="textarea" id="content" onChange={handleControlledInputChange} required autoFocus placeholder="Write your message here" value={message.content} >
                 </textarea>
-                <button>
+                </fieldset>
+                <button onClick={event => {handleSaveMessage()}}>
                     Send It
-            </button>
+                </button>
             </div>
         </aside>
     )

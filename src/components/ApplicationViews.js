@@ -14,6 +14,7 @@ import { EventList } from "./events/EventList"
 import { EventProvider } from "./events/EventProvider"
 import { EventForm } from "./events/EventForm"
 import { EventDetail } from "./events/EventDetail"
+import { ArticleForm } from "./articles/ArticleForm"
 
 
 
@@ -27,6 +28,7 @@ export const ApplicationViews = () => {
           </Route>
         </UserProvider>
       </FriendProvider>
+      
       <ArticleProvider>
           <Route exact path="/">
             <ArticleList/>
@@ -34,7 +36,11 @@ export const ApplicationViews = () => {
           <Route exact path= "/detail/:articleId(\d+)">
             <ArticleDetail/>
           </Route>
+          <Route path ="/articles/create">
+            <ArticleForm/>
+          </Route>
         </ArticleProvider>  
+      
       <Route path="/friends">
         {/* Render the component for list of friends */}
       </Route>

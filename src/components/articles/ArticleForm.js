@@ -20,10 +20,10 @@ export const ArticleForm = () => {
     const handleControlledInputChange = (event) => {
       const newArticle = { ...article }
       newArticle[event.target.id] = event.target.value
-      setLocation(newArticle)
+      setArticle(newArticle)
     }
 
-    const handleSaveLocation = () => {
+    const handleSaveArticle = () => {
 
       if (article.title === "" || article.synopsis === "" || article.url === "") {
           window.alert("Please enter an article")
@@ -37,7 +37,7 @@ export const ArticleForm = () => {
               synopsis: article.synopsis,
               url: article.url,
           })
-          .then(() => history.push(`/locations/detail/${location.id}`))
+          .then(() => history.push(`/articles/detail/${article.id}`))
         }else {
           
           addArticle({
@@ -50,10 +50,10 @@ export const ArticleForm = () => {
       }
     }
     useEffect(() => {
-      if (locationId) {
-        getLocationById(locationId)
-        .then(location => {
-            setLocation(location)
+      if (articleId) {
+        getArticleById(articleId)
+        .then(article => {
+            setArticle(article)
             setIsLoading(false)
         })
       } else {
@@ -63,22 +63,30 @@ export const ArticleForm = () => {
 
 
     return (
-      <form className="locationForm">
-          <h2 className="locationForm__title">{locationId ? "Edit Location" : "Add New Location"}</h2>
+      <form className="articleForm">
+          <h2 className="articleForm__head">{articleId ? "Edit Article" : "Add New Article"}</h2>
           <fieldset>
               <div className="form-group">
-                  <label htmlFor="name">Location name:</label>
-                  <input type="text" id="name" required autoFocus className="form-control" placeholder="Location name"
+                  <label htmlFor="title">Title:</label>
+                  <input type="text" id="title" required autoFocus className="form-control" placeholder="Title"
                   onChange={handleControlledInputChange}
-                  value={location.name}/>
+                  value={article.title}/>
               </div>
           </fieldset>
           <fieldset>
               <div className="form-group">
-                  <label htmlFor="address">Location address:</label>
-                  <input type="text" id="address" required className="form-control" placeholder="Location address"
+                  <label htmlFor="synopsis">Article Summary:</label>
+                  <input type="text" id="synopsis" required className="form-control" placeholder="Summary"
                   onChange={handleControlledInputChange}
-                  value={location.address}/>
+                  value={article.synopsis}/>
+              </div>
+          </fieldset>
+          <fieldset>
+              <div className="form-group">
+                  <label htmlFor="url">Link:</label>
+                  <input type="text" id="url" required className="form-control" placeholder="Summary"
+                  onChange={handleControlledInputChange}
+                  value={article.url}/>
               </div>
           </fieldset>
 
@@ -86,9 +94,9 @@ export const ArticleForm = () => {
               disabled={isLoading}
               onClick={event => {
                   event.preventDefault()
-                  handleSaveLocation()
+                  handleSaveArticle()
               }}>
-              {locationId ? "Save Location" : "Add New Location"}</button>
+              {articleId ? "Save Article" : "Add New Article"}</button>
       </form>
   )
 }

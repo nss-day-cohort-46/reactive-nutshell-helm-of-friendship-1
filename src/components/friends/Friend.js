@@ -1,14 +1,10 @@
 import React from "react"
 
-export const FriendCard = ({friend, userObject, currentUser}) => (
+export const FriendCard = ({friend, userObject, currentUser, reversedRoleCurrentUser}) => (
     <section className="friend">
         <h3 className="friend__name">
-          {/* { currentUser? userObject.name : "" } */}
-          { currentUser && currentUser.id === userObject.id? currentUser.name: ""}
+          {friend.currentUserId === currentUser.id? userObject.name + " " + "is your Friend" : ""}
+          {friend.userId === currentUser.id? reversedRoleCurrentUser.name + " " + "is your Friend": ""}
         </h3>
-        <div className="friend__status">
-          {/* {currentUser? "You are friends!": ""} */}
-          {currentUser && currentUser.id === userObject.id? "You are friends!" : ""}
-          </div>
     </section>
 )

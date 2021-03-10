@@ -33,11 +33,12 @@ export const ArticleForm = () => {
       if (articleId){
           
           updateArticle({
+              id: article.id,
               title: article.title,
               synopsis: article.synopsis,
               url: article.url,
           })
-          .then(() => history.push(`/articles/detail/${article.id}`))
+          .then(() => history.push(`/detail/${article.id}`))
         }else {
           
           addArticle({

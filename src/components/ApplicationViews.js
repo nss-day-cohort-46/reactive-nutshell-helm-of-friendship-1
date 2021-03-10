@@ -20,18 +20,20 @@ export const ApplicationViews = () => {
         </UserProvider>
       </FriendProvider>
       <ArticleProvider>
-          <Route exact path="/">
-            <ArticleList/>
-          </Route>
-        </ArticleProvider>  
+        <Route exact path="/">
+          <ArticleList />
+        </Route>
+      </ArticleProvider>
       <Route path="/friends">
         {/* Render the component for list of friends */}
       </Route>
 
       <MessageProvider>
-        <Route path="/messages">
-          <MessageList />
-        </Route>
+        <UserProvider>
+          <Route path="/messages">
+            <MessageList />
+          </Route>
+        </UserProvider>
       </MessageProvider>
 
       <Route path="/tasks">

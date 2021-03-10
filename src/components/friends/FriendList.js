@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState, useHistory } from "react"
+import React, { useContext, useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 import { UserContext } from "../users/UserProvider"
 import { FriendCard } from "./Friend"
 import { FriendContext } from "./FriendProvider"
@@ -26,7 +27,7 @@ export const FriendList = () => {
 
     return (
         <div className="friendList">
-            <button onClick={() => history.push("/friends/search")} className="searchFriendsButton">Search for Friends</button>
+            
             {
                 friends.map(friend => {
                     const sessionUserId = sessionStorage.getItem("nutshell_user")
@@ -40,7 +41,7 @@ export const FriendList = () => {
                             friend={friend} />
                 })            
             }
-            
+            <button onClick={() => history.push("/friends/search")} className="searchFriendsButton">Search for Friends</button>
         </div>
     )
 }

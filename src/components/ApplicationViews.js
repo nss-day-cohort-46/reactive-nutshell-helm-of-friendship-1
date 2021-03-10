@@ -5,19 +5,20 @@ import { FriendProvider } from "./friends/FriendProvider"
 import { UserProvider } from "./users/UserProvider"
 import { ArticleList } from "./articles/ArticleList"
 import { ArticleProvider } from "./articles/ArticleProvider"
-import { FriendSearch } from "./friends/FriendSearch"
+import { UserList, UserSearch } from "./friends/FriendSearch"
 
 export const ApplicationViews = () => {
   return (
     <>
       <FriendProvider>
         <UserProvider>
-          <Route path="/friends">
+          <Route exact path="/friends">
             {/* Render the component for list of friends */}
             <FriendList />
           </Route>
           <Route path="/friends/search">
-            <FriendSearch />
+            <UserSearch />
+            <UserList />
           </Route>
         </UserProvider>
       </FriendProvider>

@@ -14,6 +14,7 @@ export const MessageList = () => {
 
     return (
         <aside className="messages">
+            <h3>Message Board</h3>
             {}
             <textarea>
 

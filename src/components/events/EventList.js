@@ -4,23 +4,23 @@ import { EventCard } from "./Event"
 import { useHistory } from "react-router-dom"
 
 //! Render in correct order
+//! Display by user
 export const EventList = () => {
 
     const { events, getEvents } = useContext(EventContext)
-    const [sortedEvents, setSortedEvents] = useState([])
-    const currentUserId = parseInt(sessionStorage.getItem("nutsehll_user"))
+    const [userEvents, setUserEvents] = useState([])
+
+    const currentUserId = +sessionStorage.getItem("nutshell_user")
+
 
     useEffect(() => {
         getEvents()
     }, [])
 
     useEffect(() => {
-        const filterEventsByUser = events.filter(event => event.userId === currentUserId) 
-        const eventsSortedByDate = filterEventsByUser.sort((a, b) => {
-            return (new Date(b.date).valueOf - new Date(a.date).valueOf)
-        })
-        setSortedEvents(eventsSortedByDate)
-    }, [events])
+        const filteredByUser = events.filter(e => e.userId === currentUserId)
+        setUserEvents(filteredByUser)
+    }, [])
 
 
     const history = useHistory()
@@ -36,7 +36,7 @@ export const EventList = () => {
             <div className="eventList">
                 {
                     
-                    events.map(event => {
+                    userEvents.map(event => {
                         return <EventCard key={event.id} event={event} />
                     })
                 }

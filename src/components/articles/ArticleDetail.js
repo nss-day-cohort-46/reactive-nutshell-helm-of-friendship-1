@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ArticleContext } from "./ArticleProvider"
 import "./Article.css"
-import { useParams, useHistory } from "react-router-dom"
+import { useParams, useHistory, Link } from "react-router-dom"
 
 export const ArticleDetail = () => {
 
@@ -21,9 +21,10 @@ export const ArticleDetail = () => {
     })
     }, [])
   return (
-    <section className="location">
-      <h3 className="location__name">{article.title}</h3>
-      <div className="location__address">Summary: {article.synopsis}</div>
+    <section className="article">
+      <h3 className="article__title">{article.title}</h3>
+      <div className="article__summary">Summary: {article.synopsis}</div>
+      <div className="article__url"><a href={article.url}>Go to Article</a></div>
       <button onClick={() => {history.push(`/articles/edit/${article.id}`)}}>Edit</button>
     </section>
   )

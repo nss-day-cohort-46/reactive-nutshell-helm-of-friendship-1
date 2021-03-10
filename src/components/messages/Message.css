@@ -1,0 +1,11 @@
+.messages {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    border: 2px black solid;
+}
+
+h3 {
+    text-align: center;
+}
+

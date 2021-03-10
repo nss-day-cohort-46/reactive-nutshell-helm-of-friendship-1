@@ -7,6 +7,7 @@ import { FriendProvider } from "./friends/FriendProvider"
 import { UserProvider } from "./users/UserProvider"
 import { ArticleList } from "./articles/ArticleList"
 import { ArticleProvider } from "./articles/ArticleProvider"
+import { ArticleDetail } from "./articles/ArticleDetail"
 
 // ! Render list first, then detail, then form
 import { EventList } from "./events/EventList"
@@ -22,7 +23,6 @@ export const ApplicationViews = () => {
       <FriendProvider>
         <UserProvider>
           <Route path="/friends">
-            {/* Render the component for list of friends */}
             <FriendList />
           </Route>
         </UserProvider>
@@ -30,6 +30,9 @@ export const ApplicationViews = () => {
       <ArticleProvider>
           <Route exact path="/">
             <ArticleList/>
+          </Route>
+          <Route exact path= "/detail/:articleId(\d+)">
+            <ArticleDetail/>
           </Route>
         </ArticleProvider>  
       <Route path="/friends">

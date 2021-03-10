@@ -76,4 +76,6 @@ You will be using [session storage](https://javascript.info/localstorage#session
    * Bulleted lists
 7. Strive for consistency.
 
-![ERD](./images/nutshell-ERD.jpg)
+![ERD](./images/ERDREMIXX.jpg)
+![ERD](./images/HofF-wireframe.jpg)
+![ERD](./images/HofF-dependency.jpg)

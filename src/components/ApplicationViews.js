@@ -5,7 +5,7 @@ import { Route } from "react-router-dom"
 import { EventList } from "./events/EventList"
 import { EventProvider } from "./events/EventProvider"
 import { EventForm } from "./events/EventForm"
-import { EventDetail } from "./events/EventDetail"
+//import { EventDetail } from "./events/EventDetail"
 
 
 

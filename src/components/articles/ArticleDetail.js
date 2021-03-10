@@ -5,7 +5,7 @@ import { useParams, useHistory, Link } from "react-router-dom"
 
 export const ArticleDetail = () => {
 
-  const { getArticleById } = useContext(ArticleContext) 
+  const { getArticleById, deleteArticle } = useContext(ArticleContext) 
 
 
 	const [article, setArticle] = useState({})
@@ -20,12 +20,23 @@ export const ArticleDetail = () => {
       setArticle(response)
     })
     }, [])
-  return (
+  
+  
+    const handleDelete = () => {
+      deleteArticle(articleId)
+        .then(() => {
+          history.push("/")
+        })
+    }
+  
+    return (
     <section className="article">
       <h3 className="article__title">{article.title}</h3>
       <div className="article__summary">Summary: {article.synopsis}</div>
       <div className="article__url"><a href={article.url}>Go to Article</a></div>
       <button onClick={() => {history.push(`/articles/edit/${article.id}`)}}>Edit</button>
+      <button onClick={handleDelete}>Delete</button>
+
     </section>
   )
 }

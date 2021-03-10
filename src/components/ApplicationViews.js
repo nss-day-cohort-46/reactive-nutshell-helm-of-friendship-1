@@ -10,7 +10,7 @@ import { ArticleProvider } from "./articles/ArticleProvider"
 import { EventList } from "./events/EventList"
 import { EventProvider } from "./events/EventProvider"
 import { EventForm } from "./events/EventForm"
-//import { EventDetail } from "./events/EventDetail"
+import { EventDetail } from "./events/EventDetail"
 
 
 
@@ -49,12 +49,10 @@ export const ApplicationViews = () => {
             <Route path="/events/create">
               <EventForm />
             </Route>
-
-            {/* REINSTATE AFTER MERGE WITH USER PROVIDER COMPONENT */
             
-            /*<Route path="/events/detail/:eventId(\d+)">
+            <Route path="/events/detail/:eventId(\d+)">
               <EventDetail />
-            </Route>*/}
+            </Route>
         </EventProvider>
       </UserProvider>
     </>

@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import { EventContext } from "./EventProvider"
-
 import {UserContext} from "../users/UserProvider"
 import { useParams, useHistory } from "react-router-dom"
-import userEvent from "@testing-library/user-event"
+// import userEvent from "@testing-library/user-event"
 
 export const EventDetail = () => {
 
@@ -18,7 +17,7 @@ export const EventDetail = () => {
     const history = useHistory()
     const { eventId } = useParams()
     //get user Id from session storage
-    const currentUserId = sessionStorage.getItem("id")
+    const currentUserId = +sessionStorage.getItem("nutshell_user")
 
     useEffect(() => {
         getEventById(eventId)
@@ -38,7 +37,7 @@ export const EventDetail = () => {
             <h4 className="event__title">{event.title}</h4>
             <div className="event__date">{event.date}</div>
             <div className="event__info">Description: {event.info}</div>
-            <div className="event__user">Host: {user?.name}</div>
+            <div className="event__user">Host: {user.name}</div>
         </section>
     )
 }

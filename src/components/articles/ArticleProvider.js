@@ -23,7 +23,7 @@ export const ArticleProvider = (props) => {
 }
 
 const getArticleById = (id) => {
-  return fetch(`http://localhost:8088/${id}`)
+  return fetch(`http://localhost:8088/articles/${id}`)
       .then(res => res.json())
 }
 

@@ -7,10 +7,11 @@ import { UserContext } from "../users/UserProvider"
 export const UserSearch = () => {
   const { setSearchTerms } = useContext(UserContext)
 
+  
   return (
     <>
       Friend search:
-      <input type="text"
+      <input type="text" 
         className="input--wide"
         onKeyUp={(event) => setSearchTerms(event.target.value)}
         placeholder="Search for a friend... " />
@@ -43,9 +44,9 @@ export const UserList = () => {
             {
                 filteredUsers.map(filteredUser => {
                     const sessionUserId = parseInt(sessionStorage.getItem("nutshell_user"))
-                    const userObject = filteredUsers.find(user => user.id === sessionUserId)
+                    // const userObject = filteredUsers.find(user => user.id === sessionUserId)
                 return <UserCard key={filteredUser.id}
-                            userObject={userObject}
+                            // userObject={userObject}
                             user={filteredUser}
                              />
                 })            

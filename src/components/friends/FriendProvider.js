@@ -11,7 +11,7 @@ export const FriendProvider = (props) => {
         .then(setFriends)
     }
 
-    const [ searchTerms, setSearchTerms ] = useState("")
+    // const [ searchTerms, setSearchTerms ] = useState("")
 
     const addFriend = (friendObj) => {
         return fetch("http://localhost:8088/friends", {
@@ -31,7 +31,7 @@ export const FriendProvider = (props) => {
 
     return (
         <FriendContext.Provider value={{
-            friends, getFriends, addFriend, searchTerms, setSearchTerms, getFriendById
+            friends, getFriends, addFriend, getFriendById
         }}>
             {props.children}
         </FriendContext.Provider>

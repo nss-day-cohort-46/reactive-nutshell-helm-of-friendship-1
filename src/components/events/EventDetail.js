@@ -19,6 +19,7 @@ export const EventDetail = () => {
     //get user Id from session storage
     const currentUserId = +sessionStorage.getItem("nutshell_user")
 
+
     // Get details for specific event and it's creator
     useEffect(() => {
         getEventById(eventId)

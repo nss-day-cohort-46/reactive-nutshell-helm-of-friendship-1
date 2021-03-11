@@ -1,18 +1,28 @@
 import React, {useContext, useEffect} from "react"
 import {useHistory} from "react-router-dom"
 import {ArticleContext} from "./ArticleProvider"
+import {FriendContext} from "../friends/FriendProvider"
+import {UserContext} from "../users/UserProvider"
 import {Article} from "./Article"
 import "./Article.css"
 
 export const ArticleList = () =>{
-  
+// const { friends, getFriends } = useContext(FriendContext)
+const { users, getUsers, searchTerms } = useContext(UserContext) 
 const history = useHistory()
-const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+const sessionUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 const {articles, getArticles, setArticles} = useContext(ArticleContext)
 
 useEffect(() => {
   getArticles()
 }, [])
+
+
+
+
+// useEffect(() => {
+// getFriends()
+// }, [])
 
 useEffect(() =>{
   const sortByDate = articles.sort((a, b) => new Date(a.date) - new Date(b.date))
@@ -27,7 +37,7 @@ return (
     </button>
   <div className="articleList">
   {articles.map(article =>{
-      if(article.userId === currentUserId)
+      if(article.userId === sessionUserId )
       return <Article key={article.id} articleObj = {article}/>
     })}
   </div>

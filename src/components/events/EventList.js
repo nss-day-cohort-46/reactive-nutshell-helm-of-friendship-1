@@ -9,40 +9,20 @@ import { FriendContext } from "../friends/FriendProvider"
 export const EventList = () => {
 
     // Event Context
-    const { events, getEventsByUserId } = useContext(EventContext)
+    const { events, getEventsByUserId, getEvents } = useContext(EventContext)
     const [userEvents, setUserEvents] = useState([])
-
-    // Logged In User Id
-    const currentUserId = +sessionStorage.getItem("nutshell_user")
-
-    //Friend Context
     const { friends, getFriends } = useContext(FriendContext)
+    const currentUserId = +sessionStorage.getItem("nutshell_user")
+    const history = useHistory()
 
-    //Sorted Friend State
-    const [sortedFriends, setSortedFriends] = useState([])
-    console.log('sortedFriends: ', sortedFriends);
 
-    // Fetch friends data on render
-    useEffect(() => {
-        getFriends()
-    }, [])
-    
-    console.log("friends on render", friends)
-    //Sort the friends relationship table to find objects containing the logged in userId
-    useEffect(() => {
-        const friendsArray = friends.filter(friend => (currentUserId === friend.userId || currentUserId === friend.currentUserId ))
-        const sortedFriends = friendsArray.forEach(obj => {
-            if
-        })
-        
-        setSortedFriends(sortedFriends)
-    }, [friends])
-
-    // Exclude repeats
+    //! Get all events, then all friends
+    //! Match events to currentUser id, then match events to friend.userId matches of current
 
     // Filter events for current user via fetch call
     useEffect(() => {
-        getEventsByUserId(currentUserId)
+        getEvents()
+            .then(getFriends)
     }, [])
 
 
@@ -56,7 +36,6 @@ export const EventList = () => {
 
 
 
-    const history = useHistory()
 
     
 

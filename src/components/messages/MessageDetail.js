@@ -2,10 +2,9 @@ import React, { useContext, useEffect, useState } from "react"
 import { MessageContext } from "./MessageProvider"
 import { useHistory, useParams } from "react-router-dom"
 import "./Message.css"
-import { MessageCard } from "./Message"
 
 export const MessageDetail = () => {
-    const { getMessageById } = useContext(MessageContext)
+    const { getMessageById, deleteMessage } = useContext(MessageContext)
     const [ message, setMessage] = useState({})
     const { messageId } = useParams()
     const history = useHistory();
@@ -17,8 +16,21 @@ export const MessageDetail = () => {
         })
     }, [])
 
+    const handleDelete = () => {
+        deleteMessage(message.id)
+        .then(() => {
+            history.push("./messages")
+        })
+    }
+console.log(message)
     return (
-        <div>yo</div>
+        <div>
+            <div>"{message.content}"</div>
+            <div>{message.user?.name}</div>
+            <button onClick={handleDelete}>
+                Delete
+            </button>
+        </div>
     )
 
 }

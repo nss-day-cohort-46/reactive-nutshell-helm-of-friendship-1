@@ -49,9 +49,11 @@ export const ApplicationViews = () => {
       </Route>
 
       <MessageProvider>
-        <Route path="/messages">
-          <MessageList />
-        </Route>
+        <UserProvider>
+          <Route path="/messages">
+            <MessageList />
+          </Route>
+        </UserProvider>
       </MessageProvider>
 
       <Route path="/tasks">

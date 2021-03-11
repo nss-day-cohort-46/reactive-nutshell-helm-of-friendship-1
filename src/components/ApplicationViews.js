@@ -1,7 +1,10 @@
 import React from "react"
 import { Route } from "react-router-dom"
+
 import { MessageProvider } from "./messages/MessageProvider"
 import { MessageList } from "./messages/MessageList"
+import { MessageDetail } from "./messages/MessageDetail"
+
 import { FriendList } from "./friends/FriendList"
 import { FriendProvider } from "./friends/FriendProvider"
 import { UserProvider } from "./users/UserProvider"
@@ -52,6 +55,9 @@ export const ApplicationViews = () => {
         <UserProvider>
           <Route path="/messages">
             <MessageList />
+          </Route>
+          <Route path="/messages/detail">
+            <MessageDetail />
           </Route>
         </UserProvider>
       </MessageProvider>

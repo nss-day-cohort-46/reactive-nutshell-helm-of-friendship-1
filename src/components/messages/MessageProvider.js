@@ -8,9 +8,14 @@ export const MessageProvider = (props) => {
 
     // fetch call then setMessages
     const getMessages = () => {
-        return fetch("http://localhost:8088/messages")
+        return fetch("http://localhost:8088/messages/?_expand=user")
             .then(res => res.json())
             .then(setMessages)
+    }
+
+    const getMessageById = (id) => {
+        return fetch(`http://localhost:8088/messages/${id}`)
+        .then(res => res.json())
     }
 
     const addMessage = message => {
@@ -23,13 +28,12 @@ export const MessageProvider = (props) => {
         })
         .then(res => res.json())
         .then(getMessages)
-
     }
 
     // store functions in MessageContext
     return (
         <MessageContext.Provider value={{
-            messages, getMessages, addMessage
+            messages, getMessages, addMessage, getMessageById
         }}>
             {props.children}
         </MessageContext.Provider>

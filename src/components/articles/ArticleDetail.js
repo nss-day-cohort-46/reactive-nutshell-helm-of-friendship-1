@@ -6,7 +6,7 @@ import { useParams, useHistory, Link } from "react-router-dom"
 export const ArticleDetail = () => {
 
   const { getArticleById, deleteArticle } = useContext(ArticleContext) 
-
+  const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
 	const [article, setArticle] = useState({})
 
@@ -23,6 +23,7 @@ export const ArticleDetail = () => {
   
   
     const handleDelete = () => {
+
       deleteArticle(articleId)
         .then(() => {
           history.push("/")
@@ -35,8 +36,9 @@ export const ArticleDetail = () => {
       <div className="article__summary">Summary: {article.synopsis}</div>
       <div className="article__url"><a href={article.url} target="_blank">Go to Article</a></div>
       <button onClick={() => {history.push(`/articles/edit/${article.id}`)}}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
-
+      {article.userId === currentUserId? <button onClick={handleDelete}>Delete</button>:""}
+    
     </section>
   )
 }
+//! only render delete button if its the users article

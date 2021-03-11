@@ -10,7 +10,8 @@ export const ArticleForm = () => {
       title: "",
       synopsis: "",
       url: "",
-      userId: 0
+      userId: 0,
+      timestamp: 0
 
     });
     
@@ -32,14 +33,15 @@ export const ArticleForm = () => {
         } else {
           setIsLoading(true);
 
-      if (articleId){
+      if (articleId && article.userId === currentUserId){
           
           updateArticle({
               id: article.id,
               title: article.title,
               synopsis: article.synopsis,
               url: article.url,
-              userId: currentUserId
+              userId: currentUserId,
+              timestamp: Date.now()
           })
           .then(() => history.push(`/detail/${article.id}`))
         }else {
@@ -48,7 +50,8 @@ export const ArticleForm = () => {
             title: article.title,
             synopsis: article.synopsis,
             url: article.url,
-            userId: currentUserId
+            userId: currentUserId,
+            timestamp: Date.now()
           })
           .then(() => history.push("/"))
         }

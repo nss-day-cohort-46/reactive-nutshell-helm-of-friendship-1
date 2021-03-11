@@ -7,12 +7,17 @@ import "./Article.css"
 export const ArticleList = () =>{
   
 const history = useHistory()
-
-const {articles, getArticles} = useContext(ArticleContext)
+const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+const {articles, getArticles, setArticles} = useContext(ArticleContext)
 
 useEffect(() => {
   getArticles()
 }, [])
+
+useEffect(() =>{
+  const sortByDate = articles.sort((a, b) => new Date(a.date) - new Date(b.date))
+  setArticles(sortByDate)
+}, [articles])
 
 return (
   <>
@@ -22,6 +27,7 @@ return (
     </button>
   <div className="articleList">
   {articles.map(article =>{
+      if(article.userId === currentUserId)
       return <Article key={article.id} articleObj = {article}/>
     })}
   </div>

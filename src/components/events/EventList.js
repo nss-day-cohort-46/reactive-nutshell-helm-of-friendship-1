@@ -20,6 +20,7 @@ export const EventList = () => {
 
     //Sorted Friend State
     const [sortedFriends, setSortedFriends] = useState([])
+    console.log('sortedFriends: ', sortedFriends);
 
     // Fetch friends data on render
     useEffect(() => {
@@ -29,7 +30,11 @@ export const EventList = () => {
     console.log("friends on render", friends)
     //Sort the friends relationship table to find objects containing the logged in userId
     useEffect(() => {
-        const sortedFriends = friends.filter(friend => currentUserId === friend.userId || friend.currentUserId )
+        const friendsArray = friends.filter(friend => (currentUserId === friend.userId || currentUserId === friend.currentUserId ))
+        const sortedFriends = friendsArray.forEach(obj => {
+            if
+        })
+        
         setSortedFriends(sortedFriends)
     }, [friends])
 
@@ -40,10 +45,6 @@ export const EventList = () => {
         getEventsByUserId(currentUserId)
     }, [])
 
-    // useEffect(() => {
-    //     const filteredByUser = events.filter(e => e.userId === currentUserId)
-    //     setUserEvents(filteredByUser)
-    // }, [])
 
     // Sort events by date when events state Changes
     useEffect(() => {

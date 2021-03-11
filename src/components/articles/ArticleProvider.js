@@ -38,9 +38,16 @@ const updateArticle = article => {
   .then(getArticles)
 }
 
+const deleteArticle = articleId => {
+  return fetch(`http://localhost:8088/articles/${articleId}`, {
+      method: "DELETE"
+  })
+      .then(getArticles)
+}
+
   return(
     <ArticleContext.Provider value={{
-      articles, setArticles, getArticles, addArticle, getArticleById, updateArticle
+      articles, setArticles, getArticles, addArticle, getArticleById, updateArticle, deleteArticle
   }}>
       {props.children}
   </ArticleContext.Provider>

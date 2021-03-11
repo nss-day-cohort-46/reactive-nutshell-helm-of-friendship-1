@@ -6,7 +6,7 @@ import { useParams, useHistory } from "react-router-dom"
 
 export const EventDetail = () => {
 
-    const { getEventById } = useContext(EventContext)
+    const { getEventById, deleteEvent } = useContext(EventContext)
     const [event, setEvent] = useState({})
     
     const { getUserById } = useContext(UserContext)
@@ -19,6 +19,7 @@ export const EventDetail = () => {
     //get user Id from session storage
     const currentUserId = +sessionStorage.getItem("nutshell_user")
 
+    // Get details for specific event and it's creator
     useEffect(() => {
         getEventById(eventId)
             .then(response => {
@@ -31,6 +32,13 @@ export const EventDetail = () => {
             })
     }, [])
 
+    // Delete event button function
+    const handleDelete = () => {
+        deleteEvent(eventId)
+            .then(() => {
+                history.push("/events")
+            })
+    }
     
     return (
         <section className="event__item">
@@ -38,6 +46,7 @@ export const EventDetail = () => {
             <div className="event__date">{event.date}</div>
             <div className="event__info">Description: {event.info}</div>
             <div className="event__user">Host: {user.name}</div>
+            <button onClick={handleDelete}>Delete Event</button>
         </section>
     )
 }

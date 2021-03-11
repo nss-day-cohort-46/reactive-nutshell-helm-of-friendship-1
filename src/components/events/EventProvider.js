@@ -46,9 +46,16 @@ export const EventProvider = (props) => {
             .then(setEvents)
     }
 
+    const deleteEvent = eventId => {
+        return fetch(`http://localhost:8088/events/${eventId}`, {
+            method: "DELETE"
+        })
+        .then(getEvents)
+    }
+
     return (
         <EventContext.Provider value ={{
-            events, getEvents, addEvent, updateEvent, getEventById, getEventsByUserId
+            events, getEvents, addEvent, updateEvent, getEventById, getEventsByUserId, deleteEvent
         }}>
             {props.children}
         </EventContext.Provider>

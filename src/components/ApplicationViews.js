@@ -50,9 +50,7 @@ export const ApplicationViews = () => {
           </Route>
         </ArticleProvider>  
       
-      <Route path="/friends">
-        {/* Render the component for list of friends */}
-      </Route>
+      
 
       <MessageProvider>
         <UserProvider>

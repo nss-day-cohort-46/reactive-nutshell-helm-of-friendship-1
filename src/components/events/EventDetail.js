@@ -12,7 +12,7 @@ export const EventDetail = () => {
     const { getUserById } = useContext(UserContext)
     const [user, setUser] = useState({})
     
-    
+    console.log("expanded event object", event)
     
     const history = useHistory()
     const { eventId } = useParams()
@@ -26,10 +26,10 @@ export const EventDetail = () => {
                 setEvent(response)
             })
 
-        getUserById(currentUserId)
-            .then(response => {
-                setUser(response)
-            })
+        // getUserById(currentUserId)
+        //     .then(response => {
+        //         setUser(response)
+            // })
     }, [])
 
     // Delete event button function
@@ -45,7 +45,7 @@ export const EventDetail = () => {
             <h4 className="event__title">{event.title}</h4>
             <div className="event__date">{event.date}</div>
             <div className="event__info">Description: {event.info}</div>
-            <div className="event__user">Host: {user.name}</div>
+            <div className="event__user">Host: {event.user?.name}</div>
             <button onClick={handleDelete}>Delete Event</button>
         </section>
     )

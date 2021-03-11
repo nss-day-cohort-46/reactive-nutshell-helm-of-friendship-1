@@ -11,7 +11,7 @@ export const EventList = () => {
     // Event Context
     const { events, getEventsByUserId, getEvents } = useContext(EventContext)
     const [userEvents, setUserEvents] = useState([])
-    const { friends, getFriends } = useContext(FriendContext)
+    const { friends, getFriendsByCurrentUser } = useContext(FriendContext)
     const currentUserId = +sessionStorage.getItem("nutshell_user")
     const history = useHistory()
 
@@ -21,11 +21,26 @@ export const EventList = () => {
 
     // Filter events for current user via fetch call
     useEffect(() => {
-        getEvents()
-            .then(getFriends)
+        getFriendsByCurrentUser(currentUserId)
+            .then(getEvents)
     }, [])
 
+    console.log("events", events)
+    console.log("friends", friends)
 
+    // Find events that match currentUserId and friends.userId
+    useEffect(() => {
+        const matchingCurrentUserEvents = events.filter(event => (currentUserId === event.userId) )
+        console.log('matchingCurrentUserEvents: ', matchingCurrentUserEvents);
+        const matchingFriendEvents = friends.map(friend => events.userId === friend.userId)
+        console.log('matchingFriendEvents: ', matchingFriendEvents);
+
+
+    }, [events, friends])
+
+
+
+    
     // Sort events by date when events state Changes
     useEffect(() => {
         const sortByDate = events.sort((a, b) => new Date(b.date) - new Date(a.date))

@@ -1,10 +1,8 @@
 
 import React, { useContext, useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
 import { UserCard } from "../users/User"
 import { UserContext } from "../users/UserProvider"
-import { FriendCard } from "./Friend"
-import { FriendContext } from "./FriendProvider"
+
 
 export const UserSearch = () => {
   const { setSearchTerms } = useContext(UserContext)
@@ -44,16 +42,14 @@ export const UserList = () => {
             
             {
                 filteredUsers.map(filteredUser => {
-                    // const sessionUserId = parseInt(sessionStorage.getItem("nutshell_user"))
-                    // const currentUser = filteredUsers.find(user => user.id === sessionUserId)
-                    // const userObject = filteredUsers.find(user => user.id !== currentUser.id)
+                    const sessionUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+                    const userObject = filteredUsers.find(user => user.id === sessionUserId)
                 return <UserCard key={filteredUser.id}
-                            userObject={filteredUser}
-                            // user={filteredUser}
+                            userObject={userObject}
+                            user={filteredUser}
                              />
                 })            
             }
-            {/* <button onClick={() => history.push("/friends/search")} className="searchFriendsButton">Search for Friends</button> */}
         </div>
     )
 }

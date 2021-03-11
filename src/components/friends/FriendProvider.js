@@ -32,3 +32,6 @@ export const FriendProvider = (props) => {
         </FriendContext.Provider>
     )
 }
+
+
+

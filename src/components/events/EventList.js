@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { EventContext } from "./EventProvider"
 import { EventCard } from "./Event"
 import { useHistory } from "react-router"
-
+import "./Events.css"
 //! Render in correct order
 export const EventList = () => {
 

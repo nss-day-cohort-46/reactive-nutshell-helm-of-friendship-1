@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import "./Events.css"
 
 
 // Renders event card minimally with only a title as clickable link to send to details page

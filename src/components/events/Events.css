@@ -1,5 +1,6 @@
-div.eventList section {
+.eventList section:first-of-type a {
     /* font-weight: bolder;
     font-size: larger; */
-    color: red;
+    font-weight: bolder;
+    font-size: 1.5em;
 }

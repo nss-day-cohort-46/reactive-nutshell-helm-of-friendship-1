@@ -5,6 +5,7 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./Nutshell.css"
+import "./events/Events.css"
 
 export const Nutshell = () => (
   <>

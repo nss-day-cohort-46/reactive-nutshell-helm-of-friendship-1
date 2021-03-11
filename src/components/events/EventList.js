@@ -18,8 +18,22 @@ export const EventList = () => {
     //Friend Context
     const { friends, getFriends } = useContext(FriendContext)
 
-    //Sort the friends relationship table to find objects containing the logged in userId
+    //Sorted Friend State
+    const [sortedFriends, setSortedFriends] = useState([])
 
+    // Fetch friends data on render
+    useEffect(() => {
+        getFriends()
+    }, [])
+    
+    console.log("friends on render", friends)
+    //Sort the friends relationship table to find objects containing the logged in userId
+    useEffect(() => {
+        const sortedFriends = friends.filter(friend => currentUserId === friend.userId || friend.currentUserId )
+        setSortedFriends(sortedFriends)
+    }, [friends])
+
+    // Exclude repeats
 
     // Filter events for current user via fetch call
     useEffect(() => {

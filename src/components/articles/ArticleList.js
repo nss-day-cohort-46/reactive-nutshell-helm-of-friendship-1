@@ -7,8 +7,7 @@ import {Article} from "./Article"
 import "./Article.css"
 
 export const ArticleList = () =>{
-// const { friends, getFriends } = useContext(FriendContext)
-const { users, getUsers, searchTerms } = useContext(UserContext) 
+const { friends, getFriends } = useContext(FriendContext)
 const history = useHistory()
 const sessionUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 const {articles, getArticles, setArticles} = useContext(ArticleContext)
@@ -20,9 +19,9 @@ useEffect(() => {
 
 
 
-// useEffect(() => {
-// getFriends()
-// }, [])
+useEffect(() => {
+getFriends()
+}, [])
 
 useEffect(() =>{
   const sortByDate = articles.sort((a, b) => new Date(a.date) - new Date(b.date))

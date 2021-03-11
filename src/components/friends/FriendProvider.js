@@ -32,7 +32,7 @@ export const FriendProvider = (props) => {
     const getFriendsByCurrentUser = (id) => {
         return fetch(`http://localhost:8088/friends?currentUserId=${id}`)
             .then(res => res.json())
-            .then(setFriends)
+            // .then(setFriends)
     }
 
 

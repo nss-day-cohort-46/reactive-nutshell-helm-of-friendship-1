@@ -30,10 +30,18 @@ export const EventList = () => {
 
     // Find events that match currentUserId and friends.userId
     useEffect(() => {
+
         const matchingCurrentUserEvents = events.filter(event => (currentUserId === event.userId) )
-        console.log('matchingCurrentUserEvents: ', matchingCurrentUserEvents);
-        const matchingFriendEvents = friends.map(friend => events.userId === friend.userId)
+        console.log('matchingCurrentUserEvents: ', matchingCurrentUserEvents);      
+        
+
+        const matchingFriendEvents = events.filter(event => {
+            console.log(friends)
+            return friends.map(friend => friend.userId === event.userId)
+        })
         console.log('matchingFriendEvents: ', matchingFriendEvents);
+
+    
 
 
     }, [events, friends])

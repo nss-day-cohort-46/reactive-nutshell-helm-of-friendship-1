@@ -9,8 +9,8 @@ import "./Message.css"
 export const MessageList = () => {
     const { messages, getMessages, addMessage } = useContext(MessageContext)
     const { users, getUsers } = useContext(UserContext)
-    
-    const currentUserId = parseInt(sessionStorage.getItem("nutshell__user"))
+
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const [message, setMessage] = useState({
         userId: 0,
         content: "",
@@ -31,7 +31,7 @@ export const MessageList = () => {
         addMessage({
             userId: currentUserId,
             content: message.content,
-            timestamp: message.timestamp
+            timestamp: Date.now()
         })
             .then(() => history.push("./messages"))
     }
@@ -41,8 +41,9 @@ export const MessageList = () => {
         console.log("event")
         getUsers()
             .then(getMessages)
-    }, [])
 
+    }, [])
+console.log(currentUserId)
     // render message board to DOM
     return (
         <aside className="messageAside">
@@ -50,16 +51,16 @@ export const MessageList = () => {
                 <h3>Message Board</h3>
                 {
                     messages.map(message => {
-                        
+
                         const user = users.find(user => user.id === message.userId)
                         console.log(user, message)
                         return <MessageCard key={message.id} message={message} user={user} />
                     })
                 }
                 <fieldset>
-                <label htmlFor="content"></label>
-                <textarea type="text" name="textarea" id="content" onChange={handleControlledInputChange} required autoFocus placeholder="Write your message here" value={message.content} >
-                </textarea>
+                    <label htmlFor="content" ></label>
+                    <textarea type="text" name="textarea" id="content" onChange={handleControlledInputChange} required autoFocus placeholder="Write your message here" value={message.content} >
+                    </textarea>
                 </fieldset>
                 <button onClick={handleSaveMessage}>
                     Send It

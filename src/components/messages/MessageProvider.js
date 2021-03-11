@@ -8,7 +8,7 @@ export const MessageProvider = (props) => {
 
     // fetch call then setMessages
     const getMessages = () => {
-        return fetch("http://localhost:8088/messages?_expand=user")
+        return fetch("http://localhost:8088/messages")
             .then(res => res.json())
             .then(setMessages)
     }

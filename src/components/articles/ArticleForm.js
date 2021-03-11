@@ -33,7 +33,7 @@ export const ArticleForm = () => {
         } else {
           setIsLoading(true);
 
-      if (articleId){
+      if (articleId && article.userId === currentUserId){
           
           updateArticle({
               id: article.id,

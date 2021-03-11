@@ -24,7 +24,7 @@ export const EventList = () => {
 
     // Sort events by date when events state Changes
     useEffect(() => {
-        const sortByDate = events.sort((a, b) => new Date(a.date) - new Date(b.date))
+        const sortByDate = events.sort((a, b) => new Date(b.date) - new Date(a.date))
         setUserEvents(sortByDate)
     }, [events])
 

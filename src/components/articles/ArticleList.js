@@ -8,11 +8,16 @@ export const ArticleList = () =>{
   
 const history = useHistory()
 const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
-const {articles, getArticles} = useContext(ArticleContext)
+const {articles, getArticles, setArticles} = useContext(ArticleContext)
 
 useEffect(() => {
   getArticles()
 }, [])
+
+useEffect(() =>{
+  const sortByDate = articles.sort((a, b) => new Date(a.date) - new Date(b.date))
+  setArticles(sortByDate)
+}, [articles])
 
 return (
   <>

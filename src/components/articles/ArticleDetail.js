@@ -6,7 +6,7 @@ import { useParams, useHistory, Link } from "react-router-dom"
 export const ArticleDetail = () => {
 
   const { getArticleById, deleteArticle } = useContext(ArticleContext) 
-
+  const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
 	const [article, setArticle] = useState({})
 
@@ -23,10 +23,11 @@ export const ArticleDetail = () => {
   
   
     const handleDelete = () => {
+      if(article.userId === currentUserId){
       deleteArticle(articleId)
         .then(() => {
           history.push("/")
-        })
+        })}
     }
   
     return (

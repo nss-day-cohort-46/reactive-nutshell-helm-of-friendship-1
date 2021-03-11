@@ -9,11 +9,13 @@ export const ArticleForm = () => {
     const [article, setArticle] = useState({
       title: "",
       synopsis: "",
-      url: ""
+      url: "",
+      userId: 0
+
     });
     
     const[isLoading, setIsLoading] = useState(true)
-    
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const { articleId } = useParams();
     const history = useHistory();
 
@@ -37,6 +39,7 @@ export const ArticleForm = () => {
               title: article.title,
               synopsis: article.synopsis,
               url: article.url,
+              userId: currentUserId
           })
           .then(() => history.push(`/detail/${article.id}`))
         }else {
@@ -45,6 +48,7 @@ export const ArticleForm = () => {
             title: article.title,
             synopsis: article.synopsis,
             url: article.url,
+            userId: currentUserId
           })
           .then(() => history.push("/"))
         }
@@ -85,7 +89,7 @@ export const ArticleForm = () => {
           <fieldset>
               <div className="form-group">
                   <label htmlFor="url">Link:</label>
-                  <input type="text" id="url" required className="form-control" placeholder="Summary"
+                  <input type="text" id="url" required className="form-control" placeholder="URL"
                   onChange={handleControlledInputChange}
                   value={article.url}/>
               </div>

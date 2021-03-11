@@ -33,17 +33,15 @@ export const MessageList = () => {
             content: message.content,
             timestamp: Date.now()
         })
-            .then(() => history.push("./messages"))
+            .then(() => history.push("/messages"))
     }
 
     // fetch message data and change message state
     useEffect(() => {
-        console.log("event")
         getUsers()
             .then(getMessages)
 
     }, [])
-console.log(currentUserId)
     // render message board to DOM
     return (
         <aside className="messageAside">
@@ -53,7 +51,6 @@ console.log(currentUserId)
                     messages.map(message => {
 
                         const user = users.find(user => user.id === message.userId)
-                        console.log(user, message)
                         return <MessageCard key={message.id} message={message} user={user} />
                     })
                 }

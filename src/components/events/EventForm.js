@@ -81,7 +81,7 @@ export const EventForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="title">Event Title: </label> 
-                    <input type="title" id="title" onChange={handleControlledInputChange} required autofocus className="form-control" placeholder="title?" value={event.title} />
+                    <input type="title" id="title" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="title?" value={event.title} />
                 </div>
             </fieldset>
             <fieldset>

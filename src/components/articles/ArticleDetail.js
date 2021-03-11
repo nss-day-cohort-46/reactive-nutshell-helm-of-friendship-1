@@ -23,11 +23,11 @@ export const ArticleDetail = () => {
   
   
     const handleDelete = () => {
-      if(article.userId === currentUserId){
+
       deleteArticle(articleId)
         .then(() => {
           history.push("/")
-        })}
+        })
     }
   
     return (
@@ -36,7 +36,7 @@ export const ArticleDetail = () => {
       <div className="article__summary">Summary: {article.synopsis}</div>
       <div className="article__url"><a href={article.url} target="_blank">Go to Article</a></div>
       <button onClick={() => {history.push(`/articles/edit/${article.id}`)}}>Edit</button>
-      {article.userid === currentUserId? <button onClick={handleDelete}>Delete</button>:""}
+      {article.userId === currentUserId? <button onClick={handleDelete}>Delete</button>:""}
     
     </section>
   )

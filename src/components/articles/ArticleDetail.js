@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ArticleContext } from "./ArticleProvider"
 import "./Article.css"
-import { useParams, useHistory } from "react-router-dom"
+import { useParams, useHistory, Link } from "react-router-dom"
 
 export const ArticleDetail = () => {
 
-  const { getArticleById } = useContext(ArticleContext) 
+  const { getArticleById, deleteArticle } = useContext(ArticleContext) 
 
 
 	const [article, setArticle] = useState({})
@@ -20,11 +20,23 @@ export const ArticleDetail = () => {
       setArticle(response)
     })
     }, [])
-  return (
-    <section className="location">
-      <h3 className="location__name">{article.title}</h3>
-      <div className="location__address">Summary: {article.synopsis}</div>
-      <button onClick={() => {history.push(`/edit/${article.id}`)}}>Edit</button>
+  
+  
+    const handleDelete = () => {
+      deleteArticle(articleId)
+        .then(() => {
+          history.push("/")
+        })
+    }
+  
+    return (
+    <section className="article">
+      <h3 className="article__title">{article.title}</h3>
+      <div className="article__summary">Summary: {article.synopsis}</div>
+      <div className="article__url"><a href={article.url} target="_blank">Go to Article</a></div>
+      <button onClick={() => {history.push(`/articles/edit/${article.id}`)}}>Edit</button>
+      <button onClick={handleDelete}>Delete</button>
+
     </section>
   )
 }

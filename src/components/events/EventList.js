@@ -53,6 +53,7 @@ export const EventList = () => {
         const allEventMatches = matchingCurrentUserEvents.concat(filteredMatchingFriendEvents)
         console.log('allEventMatches: ', allEventMatches);
 
+        setUserEvents(allEventMatches)
 
     }, [events, friends])
 

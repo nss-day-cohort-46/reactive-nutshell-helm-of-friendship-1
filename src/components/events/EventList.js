@@ -3,14 +3,23 @@ import { EventContext } from "./EventProvider"
 import { EventCard } from "./Event"
 import { useHistory } from "react-router-dom"
 import "./Events.css"
+import { FriendContext } from "../friends/FriendProvider"
 //! Render in correct order
 //! Display by user
 export const EventList = () => {
 
+    // Event Context
     const { events, getEventsByUserId } = useContext(EventContext)
     const [userEvents, setUserEvents] = useState([])
 
+    // Logged In User Id
     const currentUserId = +sessionStorage.getItem("nutshell_user")
+
+    //Friend Context
+    const { friends, getFriends } = useContext(FriendContext)
+
+    //Sort the friends relationship table to find objects containing the logged in userId
+
 
     // Filter events for current user via fetch call
     useEffect(() => {

@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom"
 import "./Message.css"
 
 export const MessageDetail = () => {
-    const { getMessageById, deleteMessage } = useContext(MessageContext)
+    const { getMessageById, deleteMessage, editMessage } = useContext(MessageContext)
     const [ message, setMessage] = useState({})
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const { messageId } = useParams()
@@ -17,13 +17,17 @@ export const MessageDetail = () => {
         })
     }, [])
 
-console.log(message)
-console.log(currentUserId)
-
     const handleDelete = () => {
         deleteMessage(message.id)
         .then(() => {
             history.push("/messages")
+        })
+    }
+
+    const handleEdit = () => {
+        editMessage(message.id)
+        .then(() => {
+            history.push("/messages/edit")
         })
     }
 
@@ -33,6 +37,9 @@ console.log(currentUserId)
             <div>{message.user?.name}</div>
             {currentUserId === message.userId ? <button onClick={handleDelete}>
                 Delete
+            </button> : "" } 
+            {currentUserId === message.userId ? <button onClick={handleEdit}>
+                Edit
             </button> : "" } 
         </div>
     )

@@ -14,7 +14,7 @@ export const MessageProvider = (props) => {
     }
 
     const getMessageById = (id) => {
-        return fetch(`http://localhost:8088/messages/${id}/?_expand=user`)
+        return fetch(`http://localhost:8088/messages/${id}`)
         .then(res => res.json())
     }
 

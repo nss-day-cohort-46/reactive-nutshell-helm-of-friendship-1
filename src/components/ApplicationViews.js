@@ -66,7 +66,7 @@ export const ApplicationViews = () => {
           <Route exact path="/messages/detail/:messageId(\d+)">
             <MessageDetail />
           </Route>
-          <Route exact path="/messages/edit/:messageId(\d+)">
+          <Route path="/messages/edit/:messageId(\d+)">
             <MessageEdit />
           </Route>
         </UserProvider>

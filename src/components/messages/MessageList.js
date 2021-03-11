@@ -33,7 +33,7 @@ export const MessageList = () => {
             content: message.content,
             timestamp: Date.now()
         })
-            .then(() => history.push("./messages"))
+            .then(() => history.push("/messages"))
     }
 
     // fetch message data and change message state

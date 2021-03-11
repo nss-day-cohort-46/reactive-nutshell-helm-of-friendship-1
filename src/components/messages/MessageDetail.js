@@ -6,6 +6,7 @@ import "./Message.css"
 export const MessageDetail = () => {
     const { getMessageById, deleteMessage } = useContext(MessageContext)
     const [ message, setMessage] = useState({})
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const { messageId } = useParams()
     const history = useHistory();
 
@@ -16,20 +17,23 @@ export const MessageDetail = () => {
         })
     }, [])
 
+console.log(message)
+console.log(currentUserId)
+
     const handleDelete = () => {
         deleteMessage(message.id)
         .then(() => {
-            history.push("./messages")
+            history.push("/messages")
         })
     }
-console.log(message)
+
     return (
         <div>
             <div>"{message.content}"</div>
             <div>{message.user?.name}</div>
-            <button onClick={handleDelete}>
+            {currentUserId === message.userId ? <button onClick={handleDelete}>
                 Delete
-            </button>
+            </button> : "" } 
         </div>
     )
 

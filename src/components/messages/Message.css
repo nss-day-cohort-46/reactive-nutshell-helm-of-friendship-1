@@ -1,0 +1,13 @@
+.messages {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    border: 2px black solid;
+}
+.messageCard {
+    border: 2px lightgray solid;
+}
+h3 {
+    text-align: center;
+}
+

@@ -48,7 +48,7 @@ export const EventDetail = () => {
             <div className="event__info">Description: {event.info}</div>
             <div className="event__user">Host: {event.user?.name}</div>
             {currentUserId === event.userId? <button onClick={handleDelete}>Delete Event</button> : ""}
-            {currentUserId === event.userId ? <button onCLick={() => history.push(`/events/edit/${eventId}`)}>
+            {currentUserId === event.userId ? <button onClick={() => history.push(`/events/edit/${eventId}`)}>
                 Update Event
             </button> : "" } 
         </section>

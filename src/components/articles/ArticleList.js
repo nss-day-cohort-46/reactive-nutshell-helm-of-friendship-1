@@ -7,7 +7,7 @@ import "./Article.css"
 export const ArticleList = () =>{
   
 const history = useHistory()
-
+const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 const {articles, getArticles} = useContext(ArticleContext)
 
 useEffect(() => {
@@ -22,6 +22,7 @@ return (
     </button>
   <div className="articleList">
   {articles.map(article =>{
+      if(article.userId === currentUserId)
       return <Article key={article.id} articleObj = {article}/>
     })}
   </div>

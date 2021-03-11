@@ -36,7 +36,6 @@ export const EventList = () => {
         
 
         const matchingFriendEvents = events.filter(event => {
-            console.log(friends)
             return friends.map(friend => friend.userId === event.userId)
         })
         console.log('matchingFriendEvents: ', matchingFriendEvents);
@@ -50,7 +49,9 @@ export const EventList = () => {
         })
         
         console.log('filteredMatchingFriendEvents: ', filteredMatchingFriendEvents);
-    
+        
+        const allEventMatches = matchingCurrentUserEvents.concat(filteredMatchingFriendEvents)
+        console.log('allEventMatches: ', allEventMatches);
 
 
     }, [events, friends])

@@ -28,7 +28,7 @@ export const EventList = () => {
     console.log("events", events)
     console.log("friends", friends)
 
-    // Find events that match currentUserId and friends.userId
+    // Find events that match currentUserId and friends.userId, and update this combined userEvents every time events' or friends' state changes
     useEffect(() => {
 
         const matchingCurrentUserEvents = events.filter(event => (currentUserId === event.userId) )
@@ -69,7 +69,7 @@ export const EventList = () => {
     
 
 
-
+    console.log("user events", userEvents)
 
     
 

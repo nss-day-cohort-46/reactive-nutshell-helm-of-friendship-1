@@ -1,0 +1,6 @@
+.eventList section:first-of-type a {
+    /* font-weight: bolder;
+    font-size: larger; */
+    font-weight: bolder;
+    font-size: 1.5em;
+}

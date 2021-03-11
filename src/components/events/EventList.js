@@ -41,6 +41,15 @@ export const EventList = () => {
         })
         console.log('matchingFriendEvents: ', matchingFriendEvents);
 
+        let filteredMatchingFriendEvents = []
+        
+        matchingFriendEvents.forEach(obj => {
+            if (obj.userId !== currentUserId) {
+                filteredMatchingFriendEvents.push(obj)
+            }
+        })
+        
+        console.log('filteredMatchingFriendEvents: ', filteredMatchingFriendEvents);
     
 
 

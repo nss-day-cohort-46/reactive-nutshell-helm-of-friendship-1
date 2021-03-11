@@ -19,6 +19,7 @@ export const EventDetail = () => {
     //get user Id from session storage
     const currentUserId = +sessionStorage.getItem("nutshell_user")
 
+
     // Get details for specific event and it's creator
     useEffect(() => {
         getEventById(eventId)
@@ -47,6 +48,9 @@ export const EventDetail = () => {
             <div className="event__info">Description: {event.info}</div>
             <div className="event__user">Host: {event.user?.name}</div>
             {currentUserId === event.userId? <button onClick={handleDelete}>Delete Event</button> : ""}
+            {currentUserId === event.userId ? <button onClick={() => history.push(`/events/edit/${eventId}`)}>
+                Update Event
+            </button> : "" } 
         </section>
     )
 }

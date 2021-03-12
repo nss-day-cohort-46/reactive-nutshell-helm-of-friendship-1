@@ -24,8 +24,6 @@ export const EventList = () => {
             .then(getEvents)
     }, [])
 
-    console.log("events", events)
-    console.log("friends", friends)
 
     // Find events that match currentUserId and friends.userId, and update this combined userEvents every time events' or friends' state changes
     useEffect(() => {

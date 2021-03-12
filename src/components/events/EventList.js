@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import "./Events.css"
 import { FriendContext } from "../friends/FriendProvider"
 //! Render in correct order
-//! Display by user
+
 export const EventList = () => {
 
     // Event Context
@@ -16,10 +16,9 @@ export const EventList = () => {
     const history = useHistory()
 
 
-    //! Get all events, then all friends
-    //! Match events to currentUser id, then match events to friend.userId matches of current
+    
 
-    // Filter events for current user via fetch call
+    // Fetch friends for current user then fetch all events
     useEffect(() => {
         getFriendsByCurrentUser(currentUserId)
             .then(getEvents)
@@ -32,14 +31,12 @@ export const EventList = () => {
     useEffect(() => {
 
         const matchingCurrentUserEvents = events.filter(event => (currentUserId === event.userId) )
-        console.log('matchingCurrentUserEvents: ', matchingCurrentUserEvents);      
-        
-
+            
         const matchingFriendEvents = events.filter(event => {
             return friends.map(friend => friend.userId === event.userId)
         })
-        console.log('matchingFriendEvents: ', matchingFriendEvents);
 
+        
         let filteredMatchingFriendEvents = []
         
         matchingFriendEvents.forEach(obj => {
@@ -48,28 +45,21 @@ export const EventList = () => {
             }
         })
         
-        console.log('filteredMatchingFriendEvents: ', filteredMatchingFriendEvents);
-        
         const allEventMatches = matchingCurrentUserEvents.concat(filteredMatchingFriendEvents)
         console.log('allEventMatches: ', allEventMatches);
 
-        setUserEvents(allEventMatches)
+        const sortByDate = allEventMatches.sort((a, b) => new Date(b.date) - new Date(a.date))
+        console.log('sortByDate: ', sortByDate);
+        
+        
+
+        setUserEvents(sortByDate)
 
     }, [events, friends])
 
 
 
-    
-    // Sort events by date when events state Changes
-    useEffect(() => {
-        const sortByDate = events.sort((a, b) => new Date(b.date) - new Date(a.date))
-        setUserEvents(sortByDate)
-    }, [events])
 
-    
-
-
-    console.log("user events", userEvents)
 
     
 

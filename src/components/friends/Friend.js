@@ -19,7 +19,7 @@ export const FriendCard = ({friend, userObject, currentUser, reversedRoleCurrent
       history.push("/friends")
     })
   }
-
+//throw away comment
   return (
   <section className="friend">
         <h3 className="friend__name">

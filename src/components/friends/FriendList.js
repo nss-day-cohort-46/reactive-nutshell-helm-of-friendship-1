@@ -24,7 +24,7 @@ export const FriendList = () => {
             setFiltered(users)
         }
     }, [searchTerms, users])
-
+//throw away comment
     return (
         <div className="friendList">
             

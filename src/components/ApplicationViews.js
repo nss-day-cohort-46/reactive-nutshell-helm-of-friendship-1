@@ -77,25 +77,27 @@ export const ApplicationViews = () => {
         {/* Render the component for the user's tasks */}
       </Route>
       
-      <UserProvider>
-        <EventProvider>
-            <Route exact path="/events">
-              <EventList />
-            </Route>
+      <FriendProvider>
+        <UserProvider>
+          <EventProvider>
+              <Route exact path="/events">
+                <EventList />
+              </Route>
 
-            <Route path="/events/create">
-              <EventForm />
-            </Route>
+              <Route path="/events/create">
+                <EventForm />
+              </Route>
 
-            <Route path="/events/edit/:eventId(\d+)">
-              <EventForm />
-            </Route>
-            
-            <Route path="/events/detail/:eventId(\d+)">
-              <EventDetail />
-            </Route>
-        </EventProvider>
-      </UserProvider>
+              <Route path="/events/edit/:eventId(\d+)">
+                <EventForm />
+              </Route>
+              
+              <Route path="/events/detail/:eventId(\d+)">
+                <EventDetail />
+              </Route>
+          </EventProvider>
+        </UserProvider>
+      </FriendProvider>
     </>
   )
 }

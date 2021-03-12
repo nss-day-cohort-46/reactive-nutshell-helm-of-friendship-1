@@ -44,14 +44,14 @@ export const EventList = () => {
         })
         
         const allEventMatches = matchingCurrentUserEvents.concat(filteredMatchingFriendEvents)
+        
+        allEventMatches.sort((a, b) => new Date(a.date) - new Date(b.date))
         console.log('allEventMatches: ', allEventMatches);
-
-        const sortByDate = allEventMatches.sort((a, b) => new Date(b.date) - new Date(a.date))
-        console.log('sortByDate: ', sortByDate);
+        
         
         
 
-        setUserEvents(sortByDate)
+        setUserEvents(allEventMatches)
 
     }, [events, friends])
 

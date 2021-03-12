@@ -4,6 +4,8 @@ import { UserContext } from "../users/UserProvider"
 import { FriendCard } from "./Friend"
 import { FriendContext } from "./FriendProvider"
 
+//! Working on a merge fix
+
 export const FriendList = () => {
     const { friends, getFriends } = useContext(FriendContext)
     const { users, getUsers, searchTerms } = useContext(UserContext)

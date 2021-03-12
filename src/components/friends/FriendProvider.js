@@ -29,9 +29,17 @@ export const FriendProvider = (props) => {
             .then(res => res.json())
     }
 
+    // Need function to remove a friend. This is not functional yet.
+    const removeFriend = (friendObj) => {
+        return fetch(`http://localhost:8088/friends/${friendObj.id}`, {
+            method: "DELETE"
+        })
+        .then(getFriends)
+    }
+
     return (
         <FriendContext.Provider value={{
-            friends, getFriends, addFriend, getFriendById
+            friends, getFriends, addFriend, getFriendById, removeFriend
         }}>
             {props.children}
         </FriendContext.Provider>

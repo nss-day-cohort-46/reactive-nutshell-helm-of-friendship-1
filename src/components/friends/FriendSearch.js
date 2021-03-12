@@ -1,9 +1,8 @@
-
 import React, { useContext, useEffect, useState } from "react"
 import { UserCard } from "../users/User"
 import { UserContext } from "../users/UserProvider"
 
-const sessionUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+
 export const UserSearch = () => {
   const { setSearchTerms } = useContext(UserContext)
   

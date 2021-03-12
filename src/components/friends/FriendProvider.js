@@ -23,7 +23,7 @@ export const FriendProvider = (props) => {
         })
         .then(getFriends)
     }
-
+//throw away comment
     const getFriendById = (id) => {
         return fetch(`http://localhost:8088/friends/${id}`)
             .then(res => res.json())

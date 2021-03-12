@@ -1,8 +1,9 @@
-.messages {
+.messageBoard {
     display: flex;
     padding: 10px;
     flex-direction: column;
     border: 2px black solid;
+    max-height: 800px;
 }
 .messageCard {
     border: 2px lightgray solid;
@@ -10,4 +11,12 @@
 h3 {
     text-align: center;
 }
+.messages {
+    overflow-y: auto;
+    float: bottom
+}
+
+/* .scrollBottom {
+    flex-direction: column-reverse;
+} */
 

@@ -8,13 +8,13 @@ export const MessageProvider = (props) => {
 
     // fetch call then setMessages
     const getMessages = () => {
-        return fetch("http://localhost:8088/messages/?_expand=user")
+        return fetch("http://localhost:8088/messages?_expand=user")
             .then(res => res.json())
             .then(setMessages)
     }
 
     const getMessageById = (id) => {
-        return fetch(`http://localhost:8088/messages/${id}/?_expand=user`)
+        return fetch(`http://localhost:8088/messages/${id}?_expand=user`)
         .then(res => res.json())
     }
 
@@ -30,6 +30,17 @@ export const MessageProvider = (props) => {
         .then(getMessages)
     }
 
+    const editMessage = message => {
+        return fetch(`http://localhost:8088/messages/${message.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(message)
+        })
+            .then(getMessages)
+    }
+
     const deleteMessage = (id) => {
         return fetch(`http://localhost:8088/messages/${id}`, {
             method: "DELETE"
@@ -40,7 +51,7 @@ export const MessageProvider = (props) => {
     // store functions in MessageContext
     return (
         <MessageContext.Provider value={{
-            messages, getMessages, addMessage, getMessageById, deleteMessage
+            messages, getMessages, addMessage, getMessageById, deleteMessage, editMessage
         }}>
             {props.children}
         </MessageContext.Provider>

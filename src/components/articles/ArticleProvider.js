@@ -6,7 +6,7 @@ export const ArticleProvider = (props) => {
   const [articles, setArticles] = useState([])
   
   const getArticles = () =>{
-    return fetch("http://localhost:8088/articles")
+    return fetch("http://localhost:8088/articles?_sort=timestamp")
     .then(res => res.json())
     .then(setArticles)
   }

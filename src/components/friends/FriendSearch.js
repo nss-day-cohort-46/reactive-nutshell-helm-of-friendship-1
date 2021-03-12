@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react"
 import { UserCard } from "../users/User"
 import { UserContext } from "../users/UserProvider"
@@ -6,6 +5,7 @@ import { UserContext } from "../users/UserProvider"
 
 export const UserSearch = () => {
   const { setSearchTerms } = useContext(UserContext)
+  
 
   
   return (
@@ -31,6 +31,7 @@ export const UserList = () => {
 
     useEffect(() => {
         if (searchTerms !== "") {
+            
             const subset = users.filter(user => user.name.toLowerCase().includes(searchTerms.toLowerCase()))
             setFiltered(subset)
         } else {
@@ -43,13 +44,10 @@ export const UserList = () => {
             
             {
                 filteredUsers.map(filteredUser => {
-                    const sessionUserId = parseInt(sessionStorage.getItem("nutshell_user"))
-                    // const userObject = filteredUsers.find(user => user.id === sessionUserId)
-                return <UserCard key={filteredUser.id}
-                            // userObject={userObject}
-                            user={filteredUser}
-                             />
-                })            
+                        return <UserCard key={filteredUser.id}
+                        user={filteredUser}
+                        />
+                    })            
             }
         </div>
     )

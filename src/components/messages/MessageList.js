@@ -45,23 +45,26 @@ export const MessageList = () => {
     // render message board to DOM
     return (
         <aside className="messageAside">
-            <div className="messages">
+            <div className="messageBoard">
                 <h3>Message Board</h3>
-                {
-                    messages.map(message => {
+                    <div className="messages">
+                        {
+                            messages.map(message => {
 
-                        const user = users.find(user => user.id === message.userId)
-                        return <MessageCard key={message.id} message={message} user={user} />
-                    })
-                }
-                <fieldset>
-                    <label htmlFor="content" ></label>
-                    <textarea type="text" name="textarea" id="content" onChange={handleControlledInputChange} required autoFocus placeholder="Write your message here" value={message.content} >
-                    </textarea>
-                </fieldset>
-                <button onClick={handleSaveMessage}>
-                    Send It
+                                const user = users.find(user => user.id === message.userId)
+                                return <MessageCard key={message.id} message={message} user={user} />
+                            })
+                        }
+                        <fieldset>
+                            <label htmlFor="content" ></label>
+                            <textarea type="text" name="textarea" id="content" onChange={handleControlledInputChange} required autoFocus placeholder="Write your message here" value={message.content} >
+                            </textarea>
+                        </fieldset>
+                        <button onClick={handleSaveMessage}>
+                            Send It
                 </button>
+                    </div>
+                
             </div>
         </aside>
     )

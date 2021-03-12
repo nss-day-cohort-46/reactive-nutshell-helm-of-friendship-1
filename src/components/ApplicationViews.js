@@ -1,7 +1,10 @@
 import React from "react"
 import { Route } from "react-router-dom"
+
 import { MessageProvider } from "./messages/MessageProvider"
 import { MessageList } from "./messages/MessageList"
+import { MessageDetail } from "./messages/MessageDetail"
+
 import { FriendList } from "./friends/FriendList"
 import { FriendProvider } from "./friends/FriendProvider"
 import { UserProvider } from "./users/UserProvider"
@@ -10,7 +13,7 @@ import { ArticleProvider } from "./articles/ArticleProvider"
 import { UserList, UserSearch } from "./friends/FriendSearch"
 import { ArticleDetail } from "./articles/ArticleDetail"
 
-// ! Render list first, then detail, then form
+
 import { EventList } from "./events/EventList"
 import { EventProvider } from "./events/EventProvider"
 import { EventForm } from "./events/EventForm"
@@ -57,8 +60,11 @@ export const ApplicationViews = () => {
 
       <MessageProvider>
         <UserProvider>
-          <Route path="/messages">
+          <Route exact path="/messages">
             <MessageList />
+          </Route>
+          <Route exact path="/messages/detail/:messageId(\d+)">
+            <MessageDetail />
           </Route>
         </UserProvider>
       </MessageProvider>
@@ -74,6 +80,10 @@ export const ApplicationViews = () => {
             </Route>
 
             <Route path="/events/create">
+              <EventForm />
+            </Route>
+
+            <Route path="/events/edit/:eventId(\d+)">
               <EventForm />
             </Route>
             

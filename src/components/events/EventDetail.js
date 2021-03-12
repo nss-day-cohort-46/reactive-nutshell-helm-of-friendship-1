@@ -12,7 +12,6 @@ export const EventDetail = () => {
     const { getUserById } = useContext(UserContext)
     const [user, setUser] = useState({})
     
-    console.log("expanded event object", event)
     
     const history = useHistory()
     const { eventId } = useParams()

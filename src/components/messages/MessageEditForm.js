@@ -7,20 +7,24 @@ export const MessageEdit = () => {
     const { getMessageById, editMessage } = useContext(MessageContext)
     const [message, setMessage] = useState({})
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
-    const messageId = useParams()
+    const { messageId } = useParams()
     const history = useHistory()
 
-    
+
     useEffect(() => {
-            if (messageId) {
-                getMessageById(messageId)
+        if (messageId) {
+            getMessageById(messageId)
                 .then(message => {
                     setMessage(message)
                 })
-            }
+        }
     }, [])
 
-
+    const handleControlledInputChange = (event) => {
+        const newMessage = { ...message }
+        newMessage[event.target.id] = event.target.value
+        setMessage(newMessage)
+    }
 
     const handleEditMessage = () => {
         if (messageId) {
@@ -30,7 +34,7 @@ export const MessageEdit = () => {
                 timestamp: Date.now(),
                 id: message.id
             })
-            .then(() => history.push(`/messages/detail/${message.id}`))
+                .then(() => history.push(`/messages/detail/${messageId}`))
         }
     }
     console.log(messageId)
@@ -41,12 +45,12 @@ export const MessageEdit = () => {
         <form>
             <h2>Edit Message</h2>
             <fieldset>
-                <label htmlFor="editMessage">Content: </label>
-                <input type="text" id="content" autoFocus>{message.content}</input>
+                <label htmlFor="content"></label>
+                <textarea type="text" id="content" onChange={handleControlledInputChange} autoFocus value={message.content}></textarea>
             </fieldset>
-            {currentUserId === message.userId ? <button onClick={handleEditMessage}>
+            <button onClick={handleEditMessage}>
                 Submit
-            </button> : "" } 
+            </button>
         </form>
     )
 }

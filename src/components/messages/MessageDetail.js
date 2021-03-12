@@ -17,9 +17,6 @@ export const MessageDetail = () => {
         })
     }, [])
 
-console.log(message)
-console.log(currentUserId)
-
     const handleDelete = () => {
         deleteMessage(message.id)
         .then(() => {
@@ -33,6 +30,11 @@ console.log(currentUserId)
             <div>{message.user?.name}</div>
             {currentUserId === message.userId ? <button onClick={handleDelete}>
                 Delete
+            </button> : "" } 
+            {currentUserId === message.userId ? <button onClick={() => {
+                history.push(`/messages/edit/${message.id}`)
+            }}>
+                Edit
             </button> : "" } 
         </div>
     )

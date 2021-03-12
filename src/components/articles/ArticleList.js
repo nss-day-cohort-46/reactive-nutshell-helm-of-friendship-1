@@ -5,7 +5,7 @@ import {FriendContext} from "../friends/FriendProvider"
 import {Article} from "./Article"
 import "./Article.css"
 
-export const ArticleList = (props) =>{
+export const ArticleList = () =>{
 
 const history = useHistory()
 

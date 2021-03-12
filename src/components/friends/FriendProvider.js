@@ -33,6 +33,7 @@ export const FriendProvider = (props) => {
         return fetch(`http://localhost:8088/friends?userId=${id}`)
         .then(res => res.json())
         .then(setFriends)
+    }
     // Need function to remove a friend. This is not functional yet.
     const removeFriend = (friendObj) => {
         return fetch(`http://localhost:8088/friends/${friendObj.id}`, {

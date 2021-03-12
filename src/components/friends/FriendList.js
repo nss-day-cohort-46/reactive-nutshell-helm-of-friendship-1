@@ -5,6 +5,7 @@ import { FriendCard } from "./Friend"
 import { FriendContext } from "./FriendProvider"
 
 //! Working on a merge fix
+//! Didn't work so trying a second time
 
 export const FriendList = () => {
     const { friends, getFriends } = useContext(FriendContext)

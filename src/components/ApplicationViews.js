@@ -4,6 +4,7 @@ import { Route } from "react-router-dom"
 import { MessageProvider } from "./messages/MessageProvider"
 import { MessageList } from "./messages/MessageList"
 import { MessageDetail } from "./messages/MessageDetail"
+import { MessageEdit } from "./messages/MessageEditForm"
 
 import { FriendList } from "./friends/FriendList"
 import { FriendProvider } from "./friends/FriendProvider"
@@ -62,6 +63,9 @@ export const ApplicationViews = () => {
           </Route>
           <Route exact path="/messages/detail/:messageId(\d+)">
             <MessageDetail />
+          </Route>
+          <Route path="/messages/edit/:messageId(\d+)">
+            <MessageEdit />
           </Route>
         </UserProvider>
       </MessageProvider>
